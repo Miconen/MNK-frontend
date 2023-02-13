@@ -1,37 +1,18 @@
 <nav class="flex items-center justify-between py-3 px-5 shadow">
   <div class="flex items-center space-x-5">
-    <h1 class="text-2xl">Chat app</h1>
+    <h1 class="text-2xl"><a routerLink="home">Chat app</a></h1>
     <ul>
       <li class="text-neutral-600"><a href="#">Content page</a></li>
     </ul>
   </div>
 
   <div class="flex space-x-4">
-    <button class="rounded-lg border px-2 py-1">Sign in</button>
-    <button
+    <a routerLink="/login" class="rounded-lg border px-2 py-1">Sign in</a>
+    <a
+      routerLink="/signup"
       class="rounded-lg bg-teal-700 px-2 py-1 text-white hover:bg-teal-600"
+      >Sign up</a
     >
-      Sign up
-    </button>
   </div>
 </nav>
-
-<div class="bg-neutral-100">
-  <section class="container mx-auto">
-    <div class="mb-3 flex flex-col p-3 sm:flex-row">
-      <div class="mb-10 flex items-center text-center">
-        <h2 class="text-3xl text-teal-500">
-          Ask or answer questions about
-          <span class="font-bold">programming.</span>
-        </h2>
-      </div>
-      <div class="block">
-        <img
-          class="max-w-full"
-          src="https://umbrellacreative.com.au/wp-content/uploads/2020/01/hide-the-pain-harold-why-you-should-not-use-stock-photos-1024x683.jpg"
-          alt="meme"
-        />
-      </div>
-    </div>
-  </section>
-</div>
+<router-outlet></router-outlet>

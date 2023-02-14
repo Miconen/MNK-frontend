@@ -17,7 +17,6 @@ steps:
 
 # perform unit-tets and publish test and code coverage results
 - script: |
-    npm install
     npx ng test --watch=false --code-coverage
   displayName: 'perform unit tests'    
 

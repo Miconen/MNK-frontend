@@ -7,7 +7,7 @@ module.exports = function (config) {
     frameworks: ["jasmine", "@angular-devkit/build-angular"],
     plugins: [
       require("karma-jasmine"),
-      // require("karma-chrome-launcher"),
+      require("karma-chrome-launcher"),
       // require("karma-jasmine-html-reporter"),
       require("karma-junit-reporter"),
       require("karma-coverage"),
@@ -36,7 +36,7 @@ module.exports = function (config) {
     autoWatch: false,
     singleRun: true,
     restartOnFileChange: false,
-    reporters: ["progress", "kjhtml", "junit"],
+    reporters: ["progress", "junit"],
     browsers: ["HeadlessChrome"],
     customLaunchers: {
       HeadlessChrome: {

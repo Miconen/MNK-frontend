@@ -35,7 +35,7 @@ module.exports = function (config) {
     },
     autoWatch: false,
     singleRun: true,
-    restartOnFileChange: true,
+    restartOnFileChange: false,
     reporters: ["progress", "kjhtml", "junit"],
     browsers: ["HeadlessChrome"],
     customLaunchers: {

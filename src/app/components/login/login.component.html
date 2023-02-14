@@ -1,24 +1,38 @@
-<div class="container mx-auto mt-5 p-3 sm:flex sm:justify-center">
-  <div class="bg-neutral-200 p-3 sm:w-1/2">
-    <h2 class="mb-2 text-lg font-medium">Sign in to your account</h2>
+<div class="container mx-auto mt-5 flex justify-center p-2">
+  <div class="max-w-sm grow rounded p-4">
+    <h2 class="mb-5 text-lg font-medium">Sign in to your account</h2>
     <form>
-      <div class="mb-3 flex flex-col">
+      <div class="mb-5 flex flex-col">
         <label class="mb-1" for="email">Email</label>
         <input
-          class="p-1"
+          class="bg-neutral-100 p-1 shadow"
           type="text"
           id="email"
           placeholder="example@gmail.com"
         />
       </div>
-      <div class="mb-3 flex flex-col">
+      <div class="mb-5 flex flex-col">
         <label class="mb-1" for="password">Password</label>
-        <input class="p-1" type="text" id="password" placeholder="*******" />
+        <input
+          class="bg-neutral-100 p-1 shadow"
+          type="text"
+          id="password"
+          placeholder="*******"
+        />
       </div>
-      <div class="mb-3">
-        <button class="w-full rounded-lg bg-blue-500 py-2 text-white">
+      <div class="mb-5">
+        <button
+          type="submit"
+          class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600"
+        >
           Sign in
         </button>
+      </div>
+      <div class="mb-5">
+        <p class="text-neutral-500">
+          Don't have an account yet?
+          <a routerLink="/signup" class="text-blue-600">Sign up</a>
+        </p>
       </div>
     </form>
   </div>

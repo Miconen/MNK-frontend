@@ -20,11 +20,12 @@ steps:
       npm install && npm rebuild && npm test
       npx ng test
     displayName: "Perform unit tests"
-    continueOnError: true
+    condition: succeeded()
 
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: "JUnit"
       testResultsFiles: "**/testresults/TESTS-*.xml"
       failTaskOnFailedTests: true
+      condition: succeededOrFailed()
       testRunTitle: "Publish unit test results"

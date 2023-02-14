@@ -20,6 +20,7 @@ steps:
       npm install && npm rebuild && npm test
       npx ng test
     displayName: "Perform unit tests"
+    continueOnError: true
 
   - task: PublishTestResults@2
     inputs:

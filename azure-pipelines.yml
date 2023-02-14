@@ -12,11 +12,18 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '16.x'
   displayName: 'Install Node.js'
 
+# perform unit-tets and publish test and code coverage results
 - script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
+    npm install && npm rebuild && npm test
+    npx ng test
+  displayName: 'perform unit tests'    
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TESTS-*.xml'
+  displayName: 'publish unit test results'

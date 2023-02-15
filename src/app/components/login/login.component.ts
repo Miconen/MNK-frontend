@@ -21,6 +21,6 @@ export class LoginComponent {
 
   onLogin() {
     console.log(this.loginForm.value);
-    // TODO: create account, auth
+    // TODO: login, auth,reroute to content or profile page
   }
 }

@@ -1,20 +1,36 @@
 <section class="container mx-auto mt-5 flex justify-center p-2">
-  <form class="flex max-w-md grow flex-col p-4 py-5">
+  <form
+    [formGroup]="signupForm"
+    (ngSubmit)="onCreate()"
+    class="flex max-w-md grow flex-col p-4 py-5"
+  >
     <div class="flex flex-col sm:flex-row sm:gap-4">
       <div class="mb-5 flex grow flex-col">
         <label>Name</label>
-        <input type="text" id="name" class="bg-neutral-100 p-1 shadow" />
+        <input
+          type="text"
+          formControlName="name"
+          id="name"
+          class="bg-neutral-100 p-1 shadow"
+        />
       </div>
       <div class="mb-5 flex grow flex-col">
         <label>Username</label>
-        <input type="text" id="username" class="bg-neutral-100 p-1 shadow" />
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="bg-neutral-100 p-1 shadow"
+        />
       </div>
     </div>
     <div class="mb-5 flex flex-col">
       <label>Email</label>
       <input
-        type="text"
+        type="email"
         id="email"
+        name="email"
+        formControlName="primaryEmail"
         class="bg-neutral-100 p-1 shadow"
         placeholder="example@gmail.com"
       />
@@ -24,6 +40,7 @@
       <input
         type="text"
         id="password"
+        formControlName="password"
         class="bg-neutral-100 p-1 shadow"
         placeholder="*******"
       />
@@ -31,14 +48,15 @@
     <div class="mb-5">
       <button
         type="submit"
-        class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600"
+        class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
+        [disabled]="!signupForm.valid"
       >
         Create an account
       </button>
     </div>
     <div class="mb-5">
       <p class="text-neutral-500">
-        Have an accout already?
+        Have an account already?
         <a routerLink="/login" class="text-blue-600">Sign in</a>
       </p>
     </div>

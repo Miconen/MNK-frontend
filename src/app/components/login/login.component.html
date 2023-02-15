@@ -1,29 +1,32 @@
 <div class="container mx-auto mt-5 flex justify-center p-2">
   <div class="max-w-md grow rounded p-4">
     <h2 class="mb-5 text-lg font-medium">Sign in to your account</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="mb-5 flex flex-col">
         <label class="mb-1" for="email">Email</label>
         <input
           class="bg-neutral-100 p-1 shadow"
-          type="text"
+          type="email"
           id="email"
           placeholder="example@gmail.com"
+          formControlName="primaryEmail"
         />
       </div>
       <div class="mb-5 flex flex-col">
         <label class="mb-1" for="password">Password</label>
         <input
           class="bg-neutral-100 p-1 shadow"
-          type="text"
+          type="password"
           id="password"
           placeholder="*******"
+          formControlName="password"
         />
       </div>
       <div class="mb-5">
         <button
           type="submit"
-          class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600"
+          class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
+          [disabled]="!loginForm.valid"
         >
           Sign in
         </button>

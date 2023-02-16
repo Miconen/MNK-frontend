@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SignalrService } from '../services/signalr.service';
-import { IChatModel } from '../services/IChatModel';
+import { SignalrService } from '../../services/signalr.service';
+import { IChatModel } from '../../services/IChatModel';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

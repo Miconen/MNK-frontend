@@ -1,13 +1,25 @@
 <pre>{{ getData() }}</pre>
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
-  <div class="h-full border border-black p-6">
+  <div
+    class="flex h-full flex-col justify-between rounded-lg border border-black bg-gray-100 p-6"
+  >
     <!-- Chat window -->
-    <div class="h-3/4 w-full p-2 pb-8"></div>
+    <div
+      class="h-full w-full rounded-lg border border-black bg-white pb-8 shadow shadow-gray-400"
+    ></div>
     <!-- Typing window -->
-    <div class="flex w-full flex-row justify-between p-4">
-      <input type="text" placeholder="Send message" class="w-1/2" />
-      <button class="bg-sky-400">Send</button>
+    <div class="flex w-full flex-row justify-between gap-4 py-4">
+      <input
+        type="text"
+        placeholder="Send message"
+        class="w-full rounded-lg border border-black px-2 py-1 focus:outline-teal-600"
+      />
+      <button
+        class="rounded-lg bg-teal-700 px-2 py-1 text-white hover:bg-teal-600"
+      >
+        Send
+      </button>
     </div>
   </div>
 </section>

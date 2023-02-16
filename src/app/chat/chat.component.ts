@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SignalrService } from '../services/signalr.service';
-import { HttpClient } from '@angular/common/http';
 import { IChatModel } from '../services/IChatModel';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -9,20 +9,25 @@ import { IChatModel } from '../services/IChatModel';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent {
+  public ENDPOINT: string = 'https://localhost:5000/api/chat';
+  private userId: string = 'User#' + Math.floor(Math.random() * 9999);
+
   constructor(
     public signalRService: SignalrService,
     private http: HttpClient
   ) {}
 
-  ngOnInit() {
-    this.signalRService.startConnection();
-    this.signalRService.addChatListener();
+  async ngOnInit() {
+    await this.signalRService.startConnection();
+    await this.signalRService.addChatListener(this.userId);
     this.startHttpRequest();
+    await this.signalRService.joinGroup(this.userId, 'test');
+    console.log(this.userId);
   }
 
   private startHttpRequest = () => {
-    this.http.get('https://localhost:5000/api/chat').subscribe((res) => {
-      this.signalRService.data.push(res as IChatModel);
+    this.http.get(this.ENDPOINT).subscribe((res) => {
+      console.log(res);
     });
   };
 

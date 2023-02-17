@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppRoutingModule],
+      imports: [AppRoutingModule, FontAwesomeModule],
       declarations: [AppComponent],
     }).compileComponents();
   });

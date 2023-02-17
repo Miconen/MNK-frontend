@@ -1,0 +1,19 @@
+.img-wrapper {
+  background: url("https://www.zdnet.com/a/img/resize/0a6b0be2f543ddbf313fc83a706b807b77c3c202/2021/07/19/8a337c80-5ed6-43a1-98fb-b981d420890f/programming-languages-shutterstock-1680857539.jpg?auto=webp&fit=crop&height=900&width=1200")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  @apply relative;
+}
+
+.img-wrapper:after {
+  content: "";
+  @apply absolute top-0 left-0 block h-full w-full bg-gradient-to-b from-blue-900 to-blue-700 opacity-90;
+}
+
+.home-content {
+  @apply relative;
+  z-index: 1;
+}

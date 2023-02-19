@@ -5,15 +5,8 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  @apply relative;
-}
 
-.img-wrapper:after {
-  content: "";
-  @apply absolute top-0 left-0 block h-full w-full bg-gradient-to-b from-blue-900 to-blue-700 opacity-90;
-}
-
-.home-content {
-  @apply relative;
-  z-index: 1;
+  .home-content {
+    z-index: 1;
+  }
 }

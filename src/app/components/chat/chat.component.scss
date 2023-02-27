@@ -2,6 +2,14 @@ body {
   @apply h-full;
 }
 
+.typewin {
+  max-height: 200px;
+}
+
+.chatwin {
+  min-height: 100px;
+}
+
 .grow-wrap {
   /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
   display: grid;
@@ -21,7 +29,7 @@ body {
   resize: none;
 
   /* Firefox shows scrollbar on growth, you can hide like this. */
-  overflow: hidden;
+  //overflow: hidden;
 }
 .grow-wrap > textarea,
 .grow-wrap::after {
@@ -36,4 +44,18 @@ body {
 
 label {
   display: block;
+}
+
+@media only screen and (min-width: 767px) {
+  .wrapper {
+    min-height: 500px;
+  }
+
+  .chatwin {
+    min-height: 200px;
+  }
+
+  .typewin {
+    max-height: 250px;
+  }
 }

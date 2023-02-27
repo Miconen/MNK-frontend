@@ -2,11 +2,11 @@
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
   <div
-    class="flex h-full flex-col justify-between rounded-lg border border-black bg-gray-100 p-6"
+    class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6"
   >
     <!-- Chat window -->
     <div
-      class="mb-2 h-full w-full rounded-lg border border-black bg-white pb-8 shadow shadow-gray-400"
+      class="chatwin mb-2 h-full w-full rounded-sm border border-black bg-white pb-8 shadow shadow-gray-400"
     ></div>
     <!-- Typing window -->
     <div class="flex flex-row">
@@ -17,7 +17,7 @@
           rows="1"
           placeholder="Send message"
           onInput="this.parentNode.dataset.replicatedValue = this.value"
-          class="mr-2 rounded-lg border border-black focus:outline-teal-600"
+          class="typewin mr-2 rounded-sm border border-black focus:outline-teal-600"
         ></textarea>
       </div>
       <!-- <textarea
@@ -29,7 +29,7 @@
           </textarea> -->
       <div>
         <button
-          class="rounded-lg bg-teal-700 px-2 py-2 text-white hover:bg-teal-600"
+          class="rounded-sm bg-teal-700 px-2 py-2 text-white hover:bg-teal-600"
         >
           Send
         </button>

@@ -9,6 +9,7 @@ import { SignupPageComponent } from './components/signup-page/signup-page.compon
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ChatComponent } from './components/chat/chat.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

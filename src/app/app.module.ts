@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({

@@ -1,0 +1,39 @@
+<pre>{{ getData() }}</pre>
+
+<section class="container mx-auto flex h-96 flex-col justify-between p-5">
+  <div
+    class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6"
+  >
+    <!-- Chat window -->
+    <div
+      class="chatwin mb-2 h-full w-full rounded-sm border border-black bg-white pb-8 shadow shadow-gray-400"
+    ></div>
+    <!-- Typing window -->
+    <div class="flex flex-row">
+      <div class="grow-wrap w-full">
+        <textarea
+          name="text"
+          id="text"
+          rows="1"
+          placeholder="Send message"
+          onInput="this.parentNode.dataset.replicatedValue = this.value"
+          class="typewin mr-2 rounded-sm border border-black focus:outline-teal-600"
+        ></textarea>
+      </div>
+      <!-- <textarea
+            name="chatarea"
+            placeholder="Send message"
+            cols="50"
+            class="box-border h-auto w-full resize-none overflow-hidden rounded-lg border border-black px-2 py-1 focus:outline-teal-600"
+          >
+          </textarea> -->
+      <div>
+        <button
+          class="rounded-sm bg-teal-700 px-2 py-2 text-white hover:bg-teal-600"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

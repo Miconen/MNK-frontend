@@ -7,12 +7,13 @@ import { IChatModel } from './IChatModel';
 })
 export class SignalrService {
   public data: string[];
+  public ENDPOINT: string = 'https://localhost:8081/api/chat';
   private hubConnection: signalR.HubConnection;
 
   constructor() {
     this.data = [];
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5000/chat')
+      .withUrl(this.ENDPOINT)
       .build();
   }
 

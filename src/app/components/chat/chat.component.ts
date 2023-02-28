@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent {
-  public ENDPOINT: string = 'https://localhost:5000/api/chat';
   private userId: string = 'User#' + Math.floor(Math.random() * 9999);
 
   constructor(
@@ -26,7 +25,7 @@ export class ChatComponent {
   }
 
   private startHttpRequest = () => {
-    this.http.get(this.ENDPOINT).subscribe((res) => {
+    this.http.get(this.signalRService.ENDPOINT).subscribe((res) => {
       console.log(res);
     });
   };

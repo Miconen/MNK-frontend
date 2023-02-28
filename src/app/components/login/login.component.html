@@ -3,13 +3,13 @@
     <h2 class="mb-5 text-lg font-medium">Sign in to your account</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="mb-5 flex flex-col">
-        <label class="mb-1" for="email">Email</label>
+        <label class="mb-1" for="username">Username</label>
         <input
           class="bg-neutral-100 p-1 shadow"
-          type="email"
-          id="email"
-          placeholder="example@gmail.com"
-          formControlName="primaryEmail"
+          type="text"
+          id="username"
+          placeholder="username"
+          formControlName="username"
           required
         />
       </div>

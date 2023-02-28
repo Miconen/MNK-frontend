@@ -13,10 +13,11 @@
     <h4 class="text-lg">Profile details</h4>
   </div>
   <div>
-    <form>
+    <form [formGroup]="saveChangesForm" (ngSubmit)="onSaveChanges()">
       <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:gap-4">
         <label class="grow">Username</label>
         <input
+          formControlName="username"
           class="grow bg-neutral-100 p-1 shadow"
           type="text"
           placeholder="Username"
@@ -25,6 +26,7 @@
       <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:gap-4">
         <label class="grow">Password</label>
         <input
+          formControlName="password"
           class="grow bg-neutral-100 p-1 shadow"
           type="password"
           placeholder="Password"

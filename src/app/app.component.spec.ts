@@ -1,13 +1,21 @@
 import { TestBed } from '@angular/core/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavdefaultComponent } from './components/navdefault/navdefault.component';
+import { NavloggedinComponent } from './components/navloggedin/navloggedin.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppRoutingModule, FontAwesomeModule],
-      declarations: [AppComponent],
+      declarations: [
+        AppComponent,
+        FooterComponent,
+        NavdefaultComponent,
+        NavloggedinComponent,
+      ],
     }).compileComponents();
   });
 

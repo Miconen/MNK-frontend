@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
 import { IChatModel } from '../../services/IChatModel';
 import { HttpClient } from '@angular/common/http';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +15,7 @@ export class ChatComponent {
   constructor(
     public signalRService: SignalrService,
     private http: HttpClient,
-    private authService: AuthServiceService
+    private authService: AuthService
   ) {}
 
   async ngOnInit() {

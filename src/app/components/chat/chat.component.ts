@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
 import { IChatModel } from '../../services/IChatModel';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,7 +14,8 @@ export class ChatComponent {
 
   constructor(
     public signalRService: SignalrService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {}
 
   async ngOnInit() {
@@ -34,4 +36,8 @@ export class ChatComponent {
     let data = this.signalRService.data;
     return JSON.stringify(data);
   };
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
 }

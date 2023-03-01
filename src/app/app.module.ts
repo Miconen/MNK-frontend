@@ -11,6 +11,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NavdefaultComponent } from './components/navdefault/navdefault.component';
+import { NavloggedinComponent } from './components/navloggedin/navloggedin.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
+    NavdefaultComponent,
+    NavloggedinComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

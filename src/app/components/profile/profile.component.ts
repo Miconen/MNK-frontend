@@ -8,8 +8,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ProfileComponent {
   saveChangesForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    username: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(10),
+      Validators.pattern('^[^äö]*$'),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[^äö]*$'),
+      Validators.minLength(7),
+      Validators.maxLength(20),
+    ]),
   });
   onSaveChanges() {
     console.log(this.saveChangesForm.value);

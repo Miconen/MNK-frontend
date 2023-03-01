@@ -14,11 +14,11 @@ export class SignupPageComponent implements OnInit {
       username: new FormControl('', [
         Validators.required,
         Validators.maxLength(10),
-        Validators.pattern('^[A-Za-z][A-Za-z0-9]*$'),
+        Validators.pattern('^[^äö]*$'),
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[A-Za-z][A-Za-z0-9]*$'),
+        Validators.pattern('^[^äö]*$'),
         Validators.minLength(7),
         Validators.maxLength(20),
       ]),

@@ -12,6 +12,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ChatComponent {
   private userId: string = 'User#' + Math.floor(Math.random() * 9999);
 
+  /* this is just for testing */
+  public messages: any = [
+    { user: 'testuser1', message: 'hello' },
+    { user: 'testuser', message: 'testing message' },
+  ];
+  /*  */
+
   constructor(
     public signalRService: SignalrService,
     private http: HttpClient,

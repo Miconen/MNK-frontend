@@ -7,19 +7,28 @@
   >
     <!-- Chat window -->
     <div
-      class="chatwin mb-2 h-full w-full rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400"
+      #chatWindow
+      class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400"
     >
-      <p *ngFor="let message of messages">
-        {{ message.message }}
-      </p>
+      <div
+        *ngFor="let message of messages"
+        class="mb-3 flex w-fit flex-row gap-4 rounded-md bg-blue-300 p-2"
+      >
+        <p class="font-bold">{{ message.date }}</p>
+        <p class="break-all">
+          {{ message.message }}
+        </p>
+      </div>
     </div>
     <!-- Typing window -->
     <div class="flex flex-row">
       <div class="grow-wrap w-full break-all">
         <textarea
+          #messageValue
+          (keyup.enter)="sendMessage(messageValue, chatWindow)"
           name="text"
           id="text"
-          rows="1"
+          rows="2"
           placeholder="Send message"
           onInput="this.parentNode.dataset.replicatedValue = this.value"
           class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600"
@@ -28,6 +37,7 @@
 
       <div>
         <button
+          (click)="sendMessage(messageValue, chatWindow)"
           class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700"
         >
           Send

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,9 +11,14 @@ import { HttpClient } from '@angular/common/http';
 export class ChatComponent {
   private userId: string = 'User#' + Math.floor(Math.random() * 9999);
 
+  /* this is just for testing */
+  public messages: any = [];
+  /*  */
+
   constructor(
     public signalRService: SignalrService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {}
 
   async ngOnInit() {
@@ -33,4 +39,21 @@ export class ChatComponent {
     let data = this.signalRService.data;
     return JSON.stringify(data);
   };
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  sendMessage(message: HTMLTextAreaElement, chatWindow: HTMLDivElement) {
+    const date = new Date();
+
+    this.messages.push({
+      date: date.toLocaleTimeString(),
+      message: message.value,
+    });
+    /* reset textarea value */
+    message.value = '';
+    /* chatwindow stays on bottom when there is more messages coming */
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
 }

@@ -1,4 +1,5 @@
 <pre>{{ getData() }}</pre>
+<!-- <pre *ngIf="isLoggedIn()"></pre> -->
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
   <div
@@ -6,30 +7,38 @@
   >
     <!-- Chat window -->
     <div
-      class="chatwin mb-2 h-full w-full rounded-sm border border-black bg-white pb-8 shadow shadow-gray-400"
-    ></div>
+      #chatWindow
+      class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400"
+    >
+      <div
+        *ngFor="let message of messages"
+        class="mb-3 flex w-fit flex-row gap-4 rounded-md bg-blue-300 p-2"
+      >
+        <p class="font-bold">{{ message.date }}</p>
+        <p class="break-all">
+          {{ message.message }}
+        </p>
+      </div>
+    </div>
     <!-- Typing window -->
     <div class="flex flex-row">
-      <div class="grow-wrap w-full">
+      <div class="grow-wrap w-full break-all">
         <textarea
+          #messageValue
+          (keyup.enter)="sendMessage(messageValue, chatWindow)"
           name="text"
           id="text"
-          rows="1"
+          rows="2"
           placeholder="Send message"
           onInput="this.parentNode.dataset.replicatedValue = this.value"
-          class="typewin mr-2 rounded-sm border border-black focus:outline-teal-600"
+          class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600"
         ></textarea>
       </div>
-      <!-- <textarea
-            name="chatarea"
-            placeholder="Send message"
-            cols="50"
-            class="box-border h-auto w-full resize-none overflow-hidden rounded-lg border border-black px-2 py-1 focus:outline-teal-600"
-          >
-          </textarea> -->
+
       <div>
         <button
-          class="rounded-sm bg-teal-700 px-2 py-2 text-white hover:bg-teal-600"
+          (click)="sendMessage(messageValue, chatWindow)"
+          class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700"
         >
           Send
         </button>

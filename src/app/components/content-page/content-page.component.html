@@ -1,0 +1,37 @@
+<section class="flex flex-row sm:gap-28">
+  <div class="grow-0 p-4">
+    <ul>
+      <li>Live chats</li>
+      <li>Topics</li>
+    </ul>
+  </div>
+  <div
+    infinite-scroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"
+    class="grow overflow-y-auto p-4"
+  >
+    <div *ngFor="let item of data" class="border-b border-black p-1">
+      <p>{{ item }}</p>
+    </div>
+
+    <!-- <ul class="w-3/5 p-4">
+      <li class="border-b border-black p-1">
+        <a href="#">Dummy data 1</a>
+      </li>
+      <li class="border-b border-black p-1">
+        <a href="#">Dummy data 2</a>
+      </li>
+      <li class="border-b border-black p-1">
+        <a href="#">Dummy data 3</a>
+      </li>
+      <li class="border-b border-black p-1">
+        <a href="#">Dummy data 4</a>
+      </li>
+      <li class="border-b border-black p-1">
+        <a href="#">Dummy data 5</a>
+      </li>
+    </ul> -->
+  </div>
+</section>

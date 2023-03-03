@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,9 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  faGithub = faGithub;
+  constructor(private authService: AuthService) {}
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
 }

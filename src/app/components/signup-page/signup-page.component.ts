@@ -11,20 +11,14 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(20),
-      ]),
       username: new FormControl('', [
         Validators.required,
-        Validators.maxLength(20),
-      ]),
-      primaryEmail: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.maxLength(10),
+        Validators.pattern('^[^äö]*$'),
       ]),
       password: new FormControl('', [
         Validators.required,
+        Validators.pattern('^[^äö]*$'),
         Validators.minLength(7),
         Validators.maxLength(20),
       ]),

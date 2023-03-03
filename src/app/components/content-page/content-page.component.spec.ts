@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContentPageComponent } from './content-page.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 describe('ContentPageComponent', () => {
   let component: ContentPageComponent;
@@ -8,9 +9,9 @@ describe('ContentPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentPageComponent ]
-    })
-    .compileComponents();
+      imports: [InfiniteScrollModule],
+      declarations: [ContentPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ContentPageComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
-import { IChatModel } from '../../services/IChatModel';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 

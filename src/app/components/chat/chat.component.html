@@ -1,5 +1,4 @@
 <pre>{{ getData() }}</pre>
-<!-- <pre *ngIf="isLoggedIn()"></pre> -->
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
   <div
@@ -11,12 +10,12 @@
       class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400"
     >
       <div
-        *ngFor="let message of messages"
+        *ngFor="let message of this.signalRService.data"
         class="mb-3 flex w-fit flex-row gap-4 rounded-md bg-blue-300 p-2"
       >
-        <p class="font-bold">{{ message.date }}</p>
+        <p class="font-bold">{{ message }}</p>
         <p class="break-all">
-          {{ message.message }}
+          {{ message }}
         </p>
       </div>
     </div>

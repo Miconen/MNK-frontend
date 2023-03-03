@@ -1,8 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
-import { IChatModel } from '../../services/IChatModel';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { IChatEvent } from 'src/app/types/message.interface';
 
 @Component({
   selector: 'app-chat',
@@ -48,10 +48,18 @@ export class ChatComponent {
   sendMessage(message: HTMLTextAreaElement, chatWindow: HTMLDivElement) {
     const date = new Date();
 
-    this.messages.push({
-      date: date.toLocaleTimeString(),
-      message: message.value,
-    });
+    let userMessage: IChatEvent = {
+      date: date,
+      content: message.value,
+      contentType: 'Message',
+      user: {
+        name: 'testUser',
+        id: 10,
+      },
+    };
+
+    this.signalRService.sendMessage(userMessage, 'test');
+
     /* reset textarea value */
     message.value = '';
     /* chatwindow stays on bottom when there is more messages coming */

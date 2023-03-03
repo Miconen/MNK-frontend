@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { IChatModel } from './IChatModel';
+import { IChatEvent } from 'src/app/types/message.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +42,15 @@ export class SignalrService {
     this.hubConnection.invoke(
       'SendMessageToGroup',
       userId,
+      'Test message',
+      groupName
+    );
+  };
+
+  public sendMessage = async (userMessage: IChatEvent, groupName: string) => {
+    this.hubConnection.invoke(
+      'SendMessageToGroup',
+      userMessage.user?.id,
       'Test message',
       groupName
     );

@@ -10,14 +10,17 @@ export class ContentPageComponent {
   i = 1;
 
   ngOnInit(): void {
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 19; index++) {
       this.data.push('Dummydata' + this.i);
       this.i++;
     }
   }
 
   onScroll(): void {
-    for (let index = 0; index < 50; index++) {
+    if (this.i > 100) {
+      return;
+    }
+    for (let index = 0; index < 19; index++) {
       this.data.push('Dummydata' + this.i);
       this.i++;
     }

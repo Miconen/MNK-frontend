@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
@@ -14,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NavdefaultComponent } from './components/navdefault/navdefault.component';
 import { NavloggedinComponent } from './components/navloggedin/navloggedin.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ContentPageComponent } from './components/content-page/content-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NavdefaultComponent,
     NavloggedinComponent,
     FooterComponent,
+    ContentPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

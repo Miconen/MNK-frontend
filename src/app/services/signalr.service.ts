@@ -7,7 +7,7 @@ import { IChatEvent } from 'src/app/types/message.interface';
 })
 export class SignalrService {
   public data: string[];
-  public ENDPOINT: string = 'https://localhost:8081/api/chat';
+  public ENDPOINT: string = 'https://localhost:8081/api/hub/chat';
   private hubConnection: signalR.HubConnection;
 
   constructor() {

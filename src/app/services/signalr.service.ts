@@ -6,7 +6,7 @@ import { IChatEvent } from 'src/app/types/message.interface';
   providedIn: 'root',
 })
 export class SignalrService {
-  public data: string[];
+  public data: any[]; // Change any type
   public ENDPOINT: string = 'https://localhost:8081/api/hub/chat';
   private hubConnection: signalR.HubConnection;
 
@@ -33,7 +33,7 @@ export class SignalrService {
     const getYou = (messageUser: string) =>
       userId === messageUser ? 'You' : messageUser;
     this.hubConnection.on('ReceiveMessage', (user: string, message: string) => {
-      this.data.push(`${getYou(user)}: ${message}`);
+      this.data.push({ user: getYou(user), content: message });
     });
   };
 
@@ -50,8 +50,8 @@ export class SignalrService {
   public sendMessage = async (userMessage: IChatEvent, groupName: string) => {
     this.hubConnection.invoke(
       'SendMessageToGroup',
-      userMessage.user?.id,
-      'Test message',
+      userMessage.user?.name,
+      userMessage.content,
       groupName
     );
   };

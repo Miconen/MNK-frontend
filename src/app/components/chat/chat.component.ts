@@ -12,10 +12,6 @@ import { IChatEvent } from 'src/app/types/message.interface';
 export class ChatComponent {
   private userId: string = 'User#' + Math.floor(Math.random() * 9999);
 
-  /* this is just for testing */
-  public messages: any = [];
-  /*  */
-
   constructor(
     public signalRService: SignalrService,
     private http: HttpClient,
@@ -46,6 +42,10 @@ export class ChatComponent {
   }
 
   sendMessage(message: HTMLTextAreaElement, chatWindow: HTMLDivElement) {
+    if (message.value.trim() === '') {
+      return;
+    }
+
     const date = new Date();
 
     let userMessage: IChatEvent = {
@@ -64,5 +64,10 @@ export class ChatComponent {
     message.value = '';
     /* chatwindow stays on bottom when there is more messages coming */
     chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  // if message user is not You then align text right
+  checkUser(user: string) {
+    return user === 'You' ? '' : 'content-right';
   }
 }

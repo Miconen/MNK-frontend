@@ -2,6 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { IChatEvent } from 'src/app/types/message.interface';
 
 @Component({
   selector: 'app-chat',
@@ -10,10 +11,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ChatComponent {
   private userId: string = 'User#' + Math.floor(Math.random() * 9999);
-
-  /* this is just for testing */
-  public messages: any = [];
-  /*  */
 
   constructor(
     public signalRService: SignalrService,
@@ -45,15 +42,32 @@ export class ChatComponent {
   }
 
   sendMessage(message: HTMLTextAreaElement, chatWindow: HTMLDivElement) {
+    if (message.value.trim() === '') {
+      return;
+    }
+
     const date = new Date();
 
-    this.messages.push({
-      date: date.toLocaleTimeString(),
-      message: message.value,
-    });
+    let userMessage: IChatEvent = {
+      date: date,
+      content: message.value,
+      contentType: 'Message',
+      user: {
+        name: 'testUser',
+        id: 10,
+      },
+    };
+
+    this.signalRService.sendMessage(userMessage, 'test');
+
     /* reset textarea value */
     message.value = '';
     /* chatwindow stays on bottom when there is more messages coming */
     chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  // if message user is not You then align text right
+  checkUser(user: string) {
+    return user === 'You' ? '' : 'content-right';
   }
 }

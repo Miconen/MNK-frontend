@@ -46,6 +46,18 @@ label {
   display: block;
 }
 
+.content-right {
+  @apply flex justify-end;
+
+  p {
+    @apply bg-gray-300;
+  }
+}
+
+.message {
+  max-width: 50%;
+}
+
 @media only screen and (min-width: 767px) {
   .wrapper {
     min-height: 500px;

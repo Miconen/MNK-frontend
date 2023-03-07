@@ -2,12 +2,12 @@
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
   <div
-    class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6"
+    class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6 dark:bg-slate-600"
   >
     <!-- Chat window -->
     <div
       #chatWindow
-      class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400"
+      class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400 dark:bg-slate-700 dark:text-white"
     >
       <!-- Messages -->
       <div *ngFor="let message of this.signalRService.data" class="mb-3 p-2">
@@ -31,7 +31,7 @@
           rows="2"
           placeholder="Send message"
           onInput="this.parentNode.dataset.replicatedValue = this.value"
-          class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600"
+          class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600 dark:bg-slate-700 dark:text-white dark:focus:outline-slate-300"
         ></textarea>
       </div>
 

@@ -11,7 +11,7 @@ export class ContentPageComponent {
 
   ngOnInit(): void {
     for (let index = 0; index < 19; index++) {
-      this.data.push('Dummydata' + this.i);
+      this.data.push('Recents' + this.i);
       this.i++;
     }
   }
@@ -21,7 +21,7 @@ export class ContentPageComponent {
       return;
     }
     for (let index = 0; index < 19; index++) {
-      this.data.push('Dummydata' + this.i);
+      this.data.push('Recents' + this.i);
       this.i++;
     }
   }

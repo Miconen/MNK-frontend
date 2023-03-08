@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/types/userform.interface';
 
 @Component({
   selector: 'app-signup-page',
@@ -8,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SignupPageComponent implements OnInit {
   public signupForm!: FormGroup;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -27,6 +31,13 @@ export class SignupPageComponent implements OnInit {
 
   onCreate() {
     console.log(this.signupForm.value);
-    // TODO: create account logic here
+    /* let user = {
+      Id: 10,
+      Name: this.signupForm.value.username,
+      Password: this.signupForm.value.password,
+    }; */
+    this.authService.signUp(this.signupForm.value).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

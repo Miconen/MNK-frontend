@@ -15,12 +15,12 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
-      username: new FormControl('', [
+      Name: new FormControl('', [
         Validators.required,
         Validators.maxLength(10),
         Validators.pattern('^[^äö]*$'),
       ]),
-      password: new FormControl('', [
+      Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
         Validators.minLength(7),
@@ -31,13 +31,18 @@ export class SignupPageComponent implements OnInit {
 
   onCreate() {
     console.log(this.signupForm.value);
-    /* let user = {
-      Id: 10,
+    /* let user: User = {
       Name: this.signupForm.value.username,
       Password: this.signupForm.value.password,
     }; */
     this.authService.signUp(this.signupForm.value).subscribe((res) => {
       console.log(res);
     });
+    /* this.http
+      .post('https://localhost:8081/api/signup', this.signupForm.value)
+      .subscribe({
+        next: (response) => console.log(response),
+        error: (error) => console.log(error),
+      }); */
   }
 }

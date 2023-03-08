@@ -1,5 +1,7 @@
+<!-- enctype="multipart/form-data" -->
 <section class="container mx-auto mt-5 flex justify-center p-2">
   <form
+    enctype="multipart/form-data"
     [formGroup]="signupForm"
     (ngSubmit)="onCreate()"
     class="flex max-w-md grow flex-col p-4 py-5"
@@ -13,8 +15,8 @@
       <label class="mb-1 dark:text-white">Username</label>
       <input
         type="text"
-        id="username"
-        formControlName="username"
+        id="Name"
+        formControlName="Name"
         class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
         placeholder="username"
       />
@@ -23,8 +25,8 @@
       <label class="mb-1 dark:text-white">Password</label>
       <input
         type="password"
-        id="password"
-        formControlName="password"
+        id="Password"
+        formControlName="Password"
         class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
         placeholder="*******"
       />

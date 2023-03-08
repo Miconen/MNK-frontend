@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../types/userform.interface';
 
@@ -7,10 +7,19 @@ import { User } from '../types/userform.interface';
   providedIn: 'root',
 })
 export class AuthService {
-  public ENDPOINT: string = 'https://localhost:8081/api/signup';
+  public API_SIGNUP: string = 'https://localhost:8081/api/signup';
+  /* public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  }; */
   public httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    ),
   };
+
   constructor(private http: HttpClient) {}
 
   public isLoggedIn() {
@@ -18,7 +27,10 @@ export class AuthService {
   }
 
   public signUp(user: User): Observable<any> {
-    console.log(user);
-    return this.http.post(this.ENDPOINT, user, this.httpOptions);
+    const payload = new HttpParams()
+      .set('Name', user.Name)
+      .set('Password', user.Password);
+
+    return this.http.post<any>(this.API_SIGNUP, payload, this.httpOptions);
   }
 }

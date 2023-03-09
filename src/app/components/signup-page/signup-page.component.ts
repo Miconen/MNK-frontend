@@ -17,14 +17,14 @@ export class SignupPageComponent implements OnInit {
     this.signupForm = new FormGroup({
       Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
+        Validators.maxLength(12),
         Validators.pattern('^[^äö]*$'),
       ]),
       Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
-        Validators.minLength(7),
-        Validators.maxLength(20),
+        Validators.minLength(5),
+        Validators.maxLength(8),
       ]),
     });
   }
@@ -32,6 +32,11 @@ export class SignupPageComponent implements OnInit {
   onCreate() {
     this.authService.signUp(this.signupForm.value as User).subscribe((res) => {
       console.log(res);
+      if (!res.status) {
+        // if signup not successful
+        // show message to user and return
+      }
+      // if signup success
     });
   }
 }

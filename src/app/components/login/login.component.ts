@@ -10,16 +10,16 @@ export class LoginComponent {
   public loginForm!: FormGroup;
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl('', [
+      Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
+        Validators.maxLength(12),
         Validators.pattern('^[^äö]*$'),
       ]),
-      password: new FormControl('', [
+      Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
-        Validators.minLength(7),
-        Validators.maxLength(20),
+        Validators.minLength(5),
+        Validators.maxLength(8),
       ]),
     });
   }

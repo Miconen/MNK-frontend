@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/types/userform.interface';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public loginForm!: FormGroup;
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       Name: new FormControl('', [
@@ -25,7 +29,9 @@ export class LoginComponent {
   }
 
   onLogin() {
-    console.log(this.loginForm.value);
     // TODO: login, auth,reroute to content or profile page
+    this.authService.login(this.loginForm.value as User).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

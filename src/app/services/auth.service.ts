@@ -8,11 +8,6 @@ import { User } from '../types/userform.interface';
 })
 export class AuthService {
   public API_SIGNUP: string = 'https://localhost:8081/api/signup';
-  /* public httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  }; */
   public httpOptions = {
     headers: new HttpHeaders().set(
       'Content-Type',

@@ -30,19 +30,8 @@ export class SignupPageComponent implements OnInit {
   }
 
   onCreate() {
-    console.log(this.signupForm.value);
-    /* let user: User = {
-      Name: this.signupForm.value.username,
-      Password: this.signupForm.value.password,
-    }; */
-    this.authService.signUp(this.signupForm.value).subscribe((res) => {
+    this.authService.signUp(this.signupForm.value as User).subscribe((res) => {
       console.log(res);
     });
-    /* this.http
-      .post('https://localhost:8081/api/signup', this.signupForm.value)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error),
-      }); */
   }
 }

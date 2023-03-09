@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/types/userform.interface';
 
 @Component({
   selector: 'app-login',
@@ -8,24 +10,28 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public loginForm!: FormGroup;
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl('', [
+      Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
+        Validators.maxLength(12),
         Validators.pattern('^[^äö]*$'),
       ]),
-      password: new FormControl('', [
+      Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
-        Validators.minLength(7),
-        Validators.maxLength(20),
+        Validators.minLength(5),
+        Validators.maxLength(8),
       ]),
     });
   }
 
   onLogin() {
-    console.log(this.loginForm.value);
     // TODO: login, auth,reroute to content or profile page
+    this.authService.login(this.loginForm.value as User).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

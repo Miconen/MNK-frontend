@@ -26,7 +26,7 @@
           required
         />
       </div>
-      <div class="mb-5">
+      <div class="relative mb-5">
         <button
           type="submit"
           class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
@@ -34,6 +34,12 @@
         >
           Sign in
         </button>
+        <div
+          *ngIf="errorMessage"
+          class="absolute -bottom-6 text-sm text-red-500"
+        >
+          {{ errorMessage }}
+        </div>
       </div>
       <div class="mb-5">
         <p class="text-neutral-500">

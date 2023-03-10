@@ -50,7 +50,7 @@ label {
   @apply flex justify-end;
 
   p {
-    @apply bg-gray-300;
+    @apply bg-gray-300 dark:bg-gray-600;
   }
 }
 

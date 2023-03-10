@@ -13,7 +13,7 @@
       <div *ngFor="let message of this.signalRService.data" class="mb-3 p-2">
         <div [ngClass]="checkUser(message.user)">
           <p
-            class="message w-fit break-all rounded-md bg-blue-300 p-2 font-bold"
+            class="message w-fit break-all rounded-md bg-blue-300 p-2 font-bold dark:bg-blue-600"
           >
             {{ message.user }}: {{ message.content }}
           </p>

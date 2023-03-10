@@ -10,6 +10,7 @@ import { User } from 'src/app/types/userform.interface';
 })
 export class SignupPageComponent implements OnInit {
   public signupForm!: FormGroup;
+  public errorMessage = '';
 
   constructor(private authService: AuthService) {}
 
@@ -30,13 +31,19 @@ export class SignupPageComponent implements OnInit {
   }
 
   onCreate() {
-    this.authService.signUp(this.signupForm.value as User).subscribe((res) => {
-      console.log(res);
-      if (!res.status) {
-        // if signup not successful
-        // show message to user and return
-      }
-      // if signup success
-    });
+    this.errorMessage = '';
+
+    this.authService
+      .userAccess(this.signupForm.value as User, 'signup')
+      .subscribe((res) => {
+        console.log(res);
+        if (res.status === 'Success') {
+          // if signup successful
+        } else {
+          // if signup not successful
+          // show message to user
+          this.errorMessage = res.status;
+        }
+      });
   }
 }

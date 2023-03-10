@@ -21,25 +21,14 @@ export class AuthService {
     return false;
   }
 
-  public signUp(user: User): Observable<any> {
+  // signup and login
+  public userAccess(user: User, path: string): Observable<any> {
     const payload = new HttpParams()
       .set('Name', user.Name)
       .set('Password', user.Password);
 
     return this.http.post<any>(
-      this.API_BASE_URL + 'signup',
-      payload,
-      this.httpOptions
-    );
-  }
-
-  public login(user: User): Observable<any> {
-    const payload = new HttpParams()
-      .set('Name', user.Name)
-      .set('Password', user.Password);
-
-    return this.http.post<any>(
-      this.API_BASE_URL + 'login',
+      this.API_BASE_URL + `${path}`,
       payload,
       this.httpOptions
     );

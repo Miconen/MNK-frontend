@@ -33,15 +33,17 @@ export class SignupPageComponent implements OnInit {
   onCreate() {
     this.errorMessage = '';
 
-    this.authService.signUp(this.signupForm.value as User).subscribe((res) => {
-      console.log(res);
-      if (res.status === 'Success') {
-        // if signup successful
-      } else {
-        // if signup not successful
-        // show message to user
-        this.errorMessage = res.status;
-      }
-    });
+    this.authService
+      .userAccess(this.signupForm.value as User, 'signup')
+      .subscribe((res) => {
+        console.log(res);
+        if (res.status === 'Success') {
+          // if signup successful
+        } else {
+          // if signup not successful
+          // show message to user
+          this.errorMessage = res.status;
+        }
+      });
   }
 }

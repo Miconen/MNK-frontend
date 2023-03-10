@@ -32,16 +32,18 @@ export class LoginComponent {
   onLogin() {
     this.errorMessage = '';
     // TODO: login, auth,reroute to content or profile page
-    this.authService.login(this.loginForm.value as User).subscribe((res) => {
-      console.log(res);
+    this.authService
+      .userAccess(this.loginForm.value as User, 'login')
+      .subscribe((res) => {
+        console.log(res);
 
-      if (res.status === 'Success') {
-        // if login successful
-      } else {
-        // if login not successful
-        // show message to user
-        this.errorMessage = res.status;
-      }
-    });
+        if (res.status === 'Success') {
+          // if login successful
+        } else {
+          // if login not successful
+          // show message to user
+          this.errorMessage = res.status;
+        }
+      });
   }
 }

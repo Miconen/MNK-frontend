@@ -9,7 +9,7 @@ import { User } from 'src/app/types/userform.interface';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  public errorMessage = '';
+  public errorMessages: string[] = [];
   public loginForm!: FormGroup;
   constructor(private authService: AuthService) {}
 
@@ -17,33 +17,35 @@ export class LoginComponent {
     this.loginForm = new FormGroup({
       Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(12),
+        Validators.maxLength(16),
         Validators.pattern('^[^äö]*$'),
       ]),
       Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
         Validators.minLength(5),
-        Validators.maxLength(8),
+        Validators.maxLength(16),
       ]),
     });
   }
 
   onLogin() {
-    this.errorMessage = '';
+    this.errorMessages = [];
+
     // TODO: login, auth,reroute to content or profile page
     this.authService
       .userAccess(this.loginForm.value as User, 'login')
-      .subscribe((res) => {
-        console.log(res);
-
-        if (res.status === 'Success') {
-          // if login successful
-        } else {
-          // if login not successful
-          // show message to user
-          this.errorMessage = res.status;
-        }
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.status === 'Success') {
+            // if login successful
+          }
+        },
+        error: (error) => {
+          this.errorMessages = error.error.errors;
+          // handle the error here
+        },
       });
   }
 }

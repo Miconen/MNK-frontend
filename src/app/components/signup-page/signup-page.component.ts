@@ -10,7 +10,7 @@ import { User } from 'src/app/types/userform.interface';
 })
 export class SignupPageComponent implements OnInit {
   public signupForm!: FormGroup;
-  public errorMessage = '';
+  public errorMessages: string[] = [];
 
   constructor(private authService: AuthService) {}
 
@@ -18,20 +18,20 @@ export class SignupPageComponent implements OnInit {
     this.signupForm = new FormGroup({
       Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(12),
+        Validators.maxLength(16),
         Validators.pattern('^[^äö]*$'),
       ]),
       Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
         Validators.minLength(5),
-        Validators.maxLength(8),
+        Validators.maxLength(16),
       ]),
     });
   }
 
   onCreate() {
-    this.errorMessage = '';
+    this.errorMessages = [];
 
     this.authService
       .userAccess(this.signupForm.value as User, 'signup')
@@ -42,7 +42,7 @@ export class SignupPageComponent implements OnInit {
         } else {
           // if signup not successful
           // show message to user
-          this.errorMessage = res.status;
+          this.errorMessages = res.errors;
         }
       });
   }

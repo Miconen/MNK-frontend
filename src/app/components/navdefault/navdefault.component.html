@@ -12,7 +12,24 @@
     </ul>
   </div>
 
-  <div class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4">
+  <div class="flex flex-row gap-3 sm:gap-0 sm:space-x-4">
+    <div class="flex items-center justify-center">
+      <label class="relative inline-flex cursor-pointer items-center">
+        <input
+          type="checkbox"
+          [checked]="isDarkMode"
+          class="peer sr-only"
+          (click)="toggleDarkMode(); saveCheckboxState()"
+        />
+        <div
+          class="peer flex h-6 w-11 justify-between rounded-full bg-gray-500 px-1 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full"
+        >
+          <fa-icon [icon]="faMoon" class="text-pink-400"></fa-icon>
+          <fa-icon [icon]="faSun" class="text-yellow-400"></fa-icon>
+        </div>
+      </label>
+    </div>
+
     <a routerLink="/login" class="rounded border px-2 py-1">Sign in</a>
     <a
       routerLink="/signup"

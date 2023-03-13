@@ -1,0 +1,3 @@
+.checkbox:checked + label .ball {
+  @apply translate-x-6;
+}

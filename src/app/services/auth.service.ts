@@ -19,7 +19,6 @@ export class AuthService {
 
   public isLoggedIn() {
     const user = localStorage.getItem('auth-key');
-    console.log(user);
     if (user) {
       return true;
     }
@@ -39,11 +38,15 @@ export class AuthService {
     );
   }
 
+  // save info to localstorage
   public setUser(token: string, userName: string) {
-    localStorage.removeItem('auth-key');
-    localStorage.removeItem('auth-user');
+    localStorage.clear();
 
     localStorage.setItem('auth-key', token);
     localStorage.setItem('auth-user', userName);
+  }
+
+  public logOut() {
+    localStorage.clear();
   }
 }

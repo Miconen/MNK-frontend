@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/types/userform.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -10,39 +11,42 @@ import { User } from 'src/app/types/userform.interface';
 })
 export class SignupPageComponent implements OnInit {
   public signupForm!: FormGroup;
+  public errorMessages: string[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       Name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
+        Validators.maxLength(16),
         Validators.pattern('^[^äö]*$'),
       ]),
       Password: new FormControl('', [
         Validators.required,
         Validators.pattern('^[^äö]*$'),
-        Validators.minLength(7),
-        Validators.maxLength(20),
+        Validators.minLength(5),
+        Validators.maxLength(16),
       ]),
     });
   }
 
   onCreate() {
-    console.log(this.signupForm.value);
-    /* let user: User = {
-      Name: this.signupForm.value.username,
-      Password: this.signupForm.value.password,
-    }; */
-    this.authService.signUp(this.signupForm.value).subscribe((res) => {
-      console.log(res);
-    });
-    /* this.http
-      .post('https://localhost:8081/api/signup', this.signupForm.value)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error),
-      }); */
+    this.errorMessages = [];
+
+    this.authService
+      .userAccess(this.signupForm.value as User, 'signup')
+      .subscribe((res) => {
+        console.log(res);
+        if (res.status === 'Success') {
+          // if signup successful
+          this.authService.setUser(res.jwt, this.signupForm.value.Name);
+          this.router.navigate(['/home']);
+        } else {
+          // if signup not successful
+          // show message to user
+          this.errorMessages = res.errors;
+        }
+      });
   }
 }

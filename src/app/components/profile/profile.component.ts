@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -7,24 +6,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  saveChangesForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.pattern('^[^äö]*$'),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[^äö]*$'),
-      Validators.minLength(7),
-      Validators.maxLength(20),
-    ]),
-  });
-  onSaveChanges() {
-    console.log(this.saveChangesForm.value);
-    // TODO:
-    // if new username or new password is valid then
-    // do PUT request to api and update old values with new values
-    // in database.
+  public userName = 'default user';
+  ngOnInit() {
+    const name = localStorage.getItem('auth-user');
+    if (name) {
+      this.userName = name;
+    }
+  }
+
+  deleteUser() {
+    // TODO: delete user logic here
   }
 }

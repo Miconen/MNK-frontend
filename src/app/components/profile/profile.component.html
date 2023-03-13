@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container mx-auto mt-8 flex flex-col items-center">
   <figure class="block w-28 rounded-full border-2 border-blue-300 p-1">
     <img
@@ -42,5 +43,30 @@
         />
       </div>
     </form>
+=======
+<div class="container mx-auto mt-5 flex justify-center p-2">
+  <div
+    class="w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow dark:border-gray-700 dark:bg-gray-800"
+  >
+    <div class="flex flex-col items-center">
+      <img
+        class="mb-3 h-20 w-20 rounded-full border-2 border-blue-400 p-1 shadow-lg"
+        src="https://i.guim.co.uk/img/media/3aab8a0699616ac94346c05f667b40844e46322f/0_123_5616_3432/master/5616.jpg?width=700&quality=85&auto=format&fit=max&s=a476da702aff265ce6f586be1412b1e1"
+        alt="Harold image"
+      />
+      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        {{ userName }}
+      </h5>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Role</span>
+      <div class="mt-4 space-x-3 md:mt-6">
+        <button
+          (click)="deleteUser()"
+          class="rounded-lg bg-red-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none dark:bg-red-600 dark:hover:bg-red-700"
+        >
+          Delete user
+        </button>
+      </div>
+    </div>
+>>>>>>> develop
   </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navloggedin',
@@ -6,7 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./navloggedin.component.scss'],
 })
 export class NavloggedinComponent {
+  constructor(private authService: AuthService, private router: Router) {}
+
   logOut() {
-    // TODO: logout logic
+    this.authService.logOut();
+    this.router.navigate(['/home']);
   }
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavloggedinComponent } from './navloggedin.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('NavloggedinComponent', () => {
   let component: NavloggedinComponent;
@@ -8,9 +9,9 @@ describe('NavloggedinComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavloggedinComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [NavloggedinComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NavloggedinComponent);
     component = fixture.componentInstance;

@@ -5,11 +5,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavdefaultComponent } from './components/navdefault/navdefault.component';
 import { NavloggedinComponent } from './components/navloggedin/navloggedin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppRoutingModule, FontAwesomeModule],
+      imports: [AppRoutingModule, FontAwesomeModule, HttpClientTestingModule],
       declarations: [
         AppComponent,
         FooterComponent,

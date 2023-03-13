@@ -13,7 +13,7 @@
       <div *ngFor="let message of this.signalRService.data" class="mb-3 p-2">
         <div [ngClass]="checkUser(message.user)">
           <p
-            class="message w-fit break-all rounded-md bg-blue-300 p-2 font-bold"
+            class="message w-fit break-all rounded-md bg-blue-300 p-2 font-bold dark:bg-blue-600"
           >
             {{ message.user }}: {{ message.content }}
           </p>
@@ -31,14 +31,14 @@
           rows="2"
           placeholder="Send message"
           onInput="this.parentNode.dataset.replicatedValue = this.value"
-          class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600 dark:bg-slate-700 dark:text-white dark:focus:outline-slate-300"
+          class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600 dark:bg-slate-700 dark:text-white dark:focus:outline-slate-900"
         ></textarea>
       </div>
 
       <div>
         <button
           (click)="sendMessage(messageValue, chatWindow)"
-          class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700"
+          class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700 dark:border dark:border-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
         >
           Send
         </button>

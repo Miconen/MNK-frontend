@@ -18,6 +18,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public isLoggedIn() {
+    const user = localStorage.getItem('auth-key');
+    if (user) {
+      return true;
+    }
     return false;
   }
 
@@ -32,5 +36,17 @@ export class AuthService {
       payload,
       this.httpOptions
     );
+  }
+
+  // save info to localstorage
+  public setUser(token: string, userName: string) {
+    localStorage.clear();
+
+    localStorage.setItem('auth-key', token);
+    localStorage.setItem('auth-user', userName);
+  }
+
+  public logOut() {
+    localStorage.clear();
   }
 }

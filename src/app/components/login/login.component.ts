@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/types/userform.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { User } from 'src/app/types/userform.interface';
 export class LoginComponent {
   public errorMessages: string[] = [];
   public loginForm!: FormGroup;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -38,8 +39,10 @@ export class LoginComponent {
       .subscribe({
         next: (res) => {
           console.log(res);
+          // if login successful
           if (res.status === 'Success') {
-            // if login successful
+            this.authService.setUser(res.jwt, this.loginForm.value.Name);
+            this.router.navigate(['/home']);
           }
         },
         error: (error) => {

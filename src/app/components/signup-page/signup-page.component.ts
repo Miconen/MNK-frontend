@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/types/userform.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -12,7 +13,7 @@ export class SignupPageComponent implements OnInit {
   public signupForm!: FormGroup;
   public errorMessages: string[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -39,6 +40,8 @@ export class SignupPageComponent implements OnInit {
         console.log(res);
         if (res.status === 'Success') {
           // if signup successful
+          this.authService.setUser(res.jwt, this.signupForm.value.Name);
+          this.router.navigate(['/home']);
         } else {
           // if signup not successful
           // show message to user

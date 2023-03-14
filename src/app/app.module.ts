@@ -13,7 +13,6 @@ import { ChatComponent } from './components/chat/chat.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavdefaultComponent } from './components/navdefault/navdefault.component';
-import { NavloggedinComponent } from './components/navloggedin/navloggedin.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 
@@ -26,7 +25,6 @@ import { ContentPageComponent } from './components/content-page/content-page.com
     HomeComponent,
     ProfileComponent,
     NavdefaultComponent,
-    NavloggedinComponent,
     FooterComponent,
     ContentPageComponent,
   ],

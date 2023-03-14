@@ -1,6 +1,5 @@
-<section class="">
-  <app-navdefault *ngIf="!isLoggedIn"></app-navdefault>
-  <app-navloggedin *ngIf="isLoggedIn"></app-navloggedin>
+<section>
+  <app-navdefault></app-navdefault>
   <div class="flex flex-col gap-20">
     <div>
       <router-outlet></router-outlet>

@@ -8,7 +8,6 @@
       <li class="text-white">
         <a routerLink="content">Content page</a>
       </li>
-      <li class="text-white"><a routerLink="profile">Profile test</a></li>
     </ul>
   </div>
 
@@ -29,12 +28,29 @@
         </div>
       </label>
     </div>
-
-    <a routerLink="/login" class="rounded border px-2 py-1">Sign in</a>
-    <a
-      routerLink="/signup"
-      class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
-      >Sign up</a
+    <!-- if not logged in -->
+    <div
+      *ngIf="!isLoggedIn(); else loggedIn"
+      class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4"
     >
+      <a routerLink="/login" class="rounded border px-2 py-1">Sign in</a>
+      <a
+        routerLink="/signup"
+        class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
+        >Sign up</a
+      >
+    </div>
+    <!-- if logged in -->
+    <ng-template #loggedIn>
+      <div class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4">
+        <a routerLink="profile" class="px-2 py-1">Profile</a>
+        <button
+          (click)="logOut()"
+          class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
+        >
+          Log out
+        </button>
+      </div>
+    </ng-template>
   </div>
 </nav>

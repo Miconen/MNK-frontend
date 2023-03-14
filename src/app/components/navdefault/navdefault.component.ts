@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
 import { faSun } from '@fortawesome/free-regular-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navdefault',
@@ -12,6 +14,7 @@ export class NavdefaultComponent {
   faSun = faSun;
 
   public isDarkMode = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     // get the saved state of the checkbox from local storage
@@ -49,5 +52,14 @@ export class NavdefaultComponent {
   saveCheckboxState() {
     // save the state of the checkbox to local storage
     localStorage.setItem('checkboxState', JSON.stringify(this.isDarkMode));
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/home']);
   }
 }

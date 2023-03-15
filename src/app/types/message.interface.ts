@@ -4,4 +4,6 @@ export interface IChatEvent {
     Content: string;
     ContentType: 'Join' | 'Leave' | 'Message' | 'System';
     Username: string;
+    Roomname: string;
+    JWT: string;
 }

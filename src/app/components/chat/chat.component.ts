@@ -17,10 +17,21 @@ export class ChatComponent {
     ) { }
 
     async ngOnInit() {
+        const date = new Date();
+
+        let event: IChatEvent = {
+            Date: date,
+            Content: "",
+            ContentType: 'Join',
+            Username: this.authService.getUsername(),
+            Roomname: 'test',
+            JWT: this.authService.getToken(),
+        };
+
         await this.signalRService.startConnection();
-        await this.signalRService.addChatListener(this.authService.getUsername());
+        await this.signalRService.addChatListener(event.Username);
         this.startHttpRequest();
-        await this.signalRService.joinGroup(this.authService.getUsername(), 'test');
+        await this.signalRService.joinGroup(event);
     }
 
     private startHttpRequest = () => {

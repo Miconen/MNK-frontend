@@ -41,14 +41,12 @@ export class AuthService {
 
     // save info to localstorage
     public setUser(token: string, userName: string) {
-        localStorage.clear();
-
+        localStorage.removeItem('auth-key');
         localStorage.setItem('auth-key', token);
-        localStorage.setItem('auth-user', userName);
     }
 
     public logOut() {
-        localStorage.clear();
+        localStorage.removeItem('auth-key');
     }
 
     public getToken() {

@@ -10,7 +10,7 @@ export class SignalrService {
     public ENDPOINT: string = 'https://localhost:8081/api/hub/chat';
     private hubConnection: signalR.HubConnection;
 
-    constructor(private authService: AuthService) {
+    constructor() {
         this.data = [];
         this.hubConnection = new signalR.HubConnectionBuilder()
             .withUrl(this.ENDPOINT)

@@ -54,10 +54,10 @@ export class SignalrService {
     );
   };
 
-  public sendMessage = async (userMessage: IChatEvent, groupName: string) => {
+  public sendMessage = async (chatEvent: IChatEvent, groupName: string) => {
     this.hubConnection.invoke(
       'SendMessageToGroup',
-      userMessage,
+      chatEvent,
       groupName,
       this.authService.getToken()
     );

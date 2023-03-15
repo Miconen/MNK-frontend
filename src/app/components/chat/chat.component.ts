@@ -10,8 +10,6 @@ import { IChatEvent } from 'src/app/types/message.interface';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent {
-  private userId: string = 'User#' + Math.floor(Math.random() * 9999);
-
   constructor(
     public signalRService: SignalrService,
     private http: HttpClient,
@@ -20,10 +18,9 @@ export class ChatComponent {
 
   async ngOnInit() {
     await this.signalRService.startConnection();
-    await this.signalRService.addChatListener(this.userId);
+    await this.signalRService.addChatListener(this.authService.getUsername());
     this.startHttpRequest();
-    await this.signalRService.joinGroup(this.userId, 'test');
-    console.log(this.userId);
+    await this.signalRService.joinGroup(this.authService.getUsername(), 'test');
   }
 
   private startHttpRequest = () => {
@@ -49,10 +46,10 @@ export class ChatComponent {
     const date = new Date();
 
     let userMessage: IChatEvent = {
-      date: date,
-      content: message.value,
-      contentType: 'Message',
-      userName: 'testUser',
+      Date: date,
+      Content: message.value,
+      ContentType: 'Message',
+      Username: 'testUser',
     };
 
     this.signalRService.sendMessage(userMessage, 'test');

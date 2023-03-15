@@ -53,4 +53,8 @@ export class AuthService {
   public getToken() {
     return localStorage.getItem('auth-key') ?? '';
   }
+
+  public getUsername() {
+    return localStorage.getItem('auth-user') ?? '';
+  }
 }

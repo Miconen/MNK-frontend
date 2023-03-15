@@ -1,4 +1,4 @@
 export default interface IJWT {
-  Name: string;
-  Role: string;
+  unique_name: string;
+  role: string;
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../types/userform.interface';
+import jwt_decode from 'jwt-decode';
+import IJWT from '../types/IJWT';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +57,8 @@ export class AuthService {
   }
 
   public getUsername() {
-    return localStorage.getItem('auth-user') ?? '';
+    const token = localStorage.getItem('auth-key') ?? '';
+    console.log(jwt_decode<IJWT>(token).Name);
+    return jwt_decode<IJWT>(token).Name;
   }
 }

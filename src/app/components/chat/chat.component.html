@@ -21,7 +21,7 @@
       </div>
     </div>
     <!-- Typing window -->
-    <div class="flex flex-row">
+    <div *ngIf="isLoggedIn" class="flex flex-row">
       <div class="grow-wrap w-full break-all">
         <textarea
           #messageValue

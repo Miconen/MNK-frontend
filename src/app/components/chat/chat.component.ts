@@ -52,10 +52,7 @@ export class ChatComponent {
       date: date,
       content: message.value,
       contentType: 'Message',
-      user: {
-        name: 'testUser',
-        id: 10,
-      },
+      userName: 'testUser',
     };
 
     this.signalRService.sendMessage(userMessage, 'test');

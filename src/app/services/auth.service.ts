@@ -55,12 +55,14 @@ export class AuthService {
 
     public getUsername() {
         const token = this.getToken();
+        if (!token) return "";
         const payload = this.decodeJWT(token).payload as IJWT;
         return payload.unique_name;
     }
 
     public getRole() {
         const token = this.getToken();
+        if (!token) return "guest";
         const payload = this.decodeJWT(token).payload as IJWT;
         return payload.role;
     }

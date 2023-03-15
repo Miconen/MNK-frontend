@@ -1,61 +1,60 @@
-<nav
-  class="home-content relative z-10 flex w-full flex-col justify-between gap-2 py-3 px-5 text-white sm:flex-row sm:items-center"
+<div
+  class="img-wrapper relative z-50 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-full after:bg-gradient-to-b after:from-blue-900 after:to-blue-900 after:opacity-90 dark:after:bg-gradient-to-b dark:after:from-gray-900 dark:after:to-gray-900 dark:after:opacity-90"
 >
-  <div class="flex items-center justify-between space-x-5 sm:justify-center">
-    <h1 class="text-2xl"><a routerLink="home">Chat app</a></h1>
-    <ul class="flex flex-row gap-2">
-      <li class="text-white"><a routerLink="chat">Chat</a></li>
-      <li class="text-white">
-        <a routerLink="content">Content page</a>
-      </li>
-    </ul>
-  </div>
+  <nav
+    class="home-content relative z-50 flex w-full flex-col justify-between gap-2 py-3 px-5 text-white sm:flex-row sm:items-center"
+  >
+    <div class="flex items-center justify-between space-x-5 sm:justify-center">
+      <h1 class="text-2xl"><a routerLink="home">Chat app</a></h1>
+      <ul class="flex flex-row gap-2">
+        <li class="text-white"><a routerLink="chat">Chat</a></li>
+        <li class="text-white">
+          <a routerLink="content">Content page</a>
+        </li>
+      </ul>
+    </div>
 
-  <div class="flex flex-row justify-between gap-3 sm:gap-0 sm:space-x-4">
-    <div class="flex items-center justify-center">
-      <label class="relative inline-flex cursor-pointer items-center">
-        <input
-          type="checkbox"
-          [checked]="isDarkMode"
-          class="peer sr-only"
-          (click)="toggleDarkMode(); saveCheckboxState()"
-        />
-        <div
-          class="peer flex h-6 w-11 justify-between rounded-full bg-gray-500 px-1 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full"
-        >
-          <fa-icon [icon]="faMoon" class="text-pink-400"></fa-icon>
-          <fa-icon [icon]="faSun" class="text-yellow-400"></fa-icon>
-        </div>
-      </label>
-    </div>
-    <!-- if not logged in -->
-    <div
-      *ngIf="!isLoggedIn(); else loggedIn"
-      class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4"
-    >
-      <a routerLink="/login" class="rounded border px-2 py-1">Sign in</a>
-      <a
-        routerLink="/signup"
-        class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
-        >Sign up</a
-      >
-    </div>
-    <!-- if logged in -->
-    <ng-template #loggedIn>
-      <div class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4">
-        <a routerLink="profile" class="px-2 py-1">Profile</a>
-        <button
-          (click)="logOut()"
-          class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
-        >
-          Log out
-        </button>
+    <div class="flex flex-row justify-between gap-3 sm:gap-0 sm:space-x-4">
+      <div class="flex items-center justify-center">
+        <label class="relative inline-flex cursor-pointer items-center">
+          <input
+            type="checkbox"
+            [checked]="isDarkMode"
+            class="peer sr-only"
+            (click)="toggleDarkMode(); saveCheckboxState()"
+          />
+          <div
+            class="peer flex h-6 w-11 justify-between rounded-full bg-gray-500 px-1 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full"
+          >
+            <fa-icon [icon]="faMoon" class="text-pink-400"></fa-icon>
+            <fa-icon [icon]="faSun" class="text-yellow-400"></fa-icon>
+          </div>
+        </label>
       </div>
-    </ng-template>
-  </div>
-</nav>
-
-<!-- <div
-  class="img-wrapper relative after:absolute after:top-0 after:left-0 after:block after:h-full after:w-full after:bg-gradient-to-b after:from-blue-900 after:to-blue-900 after:opacity-90 dark:after:bg-gradient-to-b dark:after:from-gray-900 dark:after:to-gray-900 dark:after:opacity-90"
->
-</div> -->
+      <!-- if not logged in -->
+      <div
+        *ngIf="!isLoggedIn(); else loggedIn"
+        class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4"
+      >
+        <a routerLink="/login" class="rounded border px-2 py-1">Sign in</a>
+        <a
+          routerLink="/signup"
+          class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
+          >Sign up</a
+        >
+      </div>
+      <!-- if logged in -->
+      <ng-template #loggedIn>
+        <div class="flex flex-row justify-center gap-3 sm:gap-0 sm:space-x-4">
+          <a routerLink="profile" class="px-2 py-1">Profile</a>
+          <button
+            (click)="logOut()"
+            class="rounded bg-indigo-200 px-2 py-1 text-black hover:bg-indigo-100"
+          >
+            Log out
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </nav>
+</div>

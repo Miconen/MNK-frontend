@@ -49,4 +49,8 @@ export class AuthService {
   public logOut() {
     localStorage.clear();
   }
+
+  public getToken() {
+    return localStorage.getItem('auth-key') ?? '';
+  }
 }

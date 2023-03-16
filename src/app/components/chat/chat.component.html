@@ -2,30 +2,49 @@
 
 <section class="container mx-auto flex h-96 flex-col justify-between p-5">
     <div
-        class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6 dark:bg-slate-600">
+        class="wrapper flex h-full flex-col justify-between rounded-sm border border-black bg-gray-100 p-6 dark:bg-slate-600"
+    >
         <!-- Chat window -->
-        <div #chatWindow
-            class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400 dark:bg-slate-700 dark:text-white">
+        <div
+            #chatWindow
+            class="chatwin mb-2 h-full w-full overflow-x-auto rounded-sm border border-black bg-white p-2 pb-8 shadow shadow-gray-400 dark:bg-slate-700 dark:text-white"
+        >
             <!-- Messages -->
-            <div *ngFor="let message of this.signalRService.data" class="mb-3 p-2">
+            <div
+                *ngFor="let message of this.signalRService.data"
+                class="mb-3 p-2"
+            >
                 <div [ngClass]="checkUser(message.Username)">
-                    <p class="message w-fit break-all rounded-md bg-blue-300 p-2 dark:bg-blue-600">
-                        <span class="font-bold">{{ message.Username }}</span>: {{ message.Content }}
+                    <p
+                        class="message w-fit break-all rounded-md bg-blue-300 p-2 dark:bg-blue-600"
+                    >
+                        <span class="font-bold">{{ message.Username }}</span
+                        >: {{ message.Content }}
                     </p>
+                    <p class="text-xs">{{ message.Date.toLocaleTimeString() }}</p>
                 </div>
             </div>
         </div>
         <!-- Typing window -->
         <div *ngIf="isLoggedIn" class="flex flex-row">
             <div class="grow-wrap w-full break-all">
-                <textarea #messageValue (keyup.enter)="sendMessage(messageValue, chatWindow)" name="text" id="text"
-                    rows="2" placeholder="Send message" onInput="this.parentNode.dataset.replicatedValue = this.value"
-                    class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600 dark:bg-slate-700 dark:text-white dark:focus:outline-slate-900"></textarea>
+                <textarea
+                    #messageValue
+                    (keyup.enter)="sendMessage(messageValue, chatWindow)"
+                    name="text"
+                    id="text"
+                    rows="2"
+                    placeholder="Send message"
+                    onInput="this.parentNode.dataset.replicatedValue = this.value"
+                    class="typewin mr-2 break-all rounded-sm border border-black focus:outline-blue-600 dark:bg-slate-700 dark:text-white dark:focus:outline-slate-900"
+                ></textarea>
             </div>
 
             <div>
-                <button (click)="sendMessage(messageValue, chatWindow)"
-                    class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700 dark:border dark:border-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800">
+                <button
+                    (click)="sendMessage(messageValue, chatWindow)"
+                    class="rounded-sm bg-blue-900 px-2 py-2 text-white hover:bg-blue-700 dark:border dark:border-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
+                >
                     Send
                 </button>
             </div>

@@ -6,52 +6,58 @@ import { IChatEvent } from 'src/app/types/message.interface';
     providedIn: 'root',
 })
 export class SignalrService {
-    public data: any[]; // Change any type
+    public data: IChatEvent[];
     public ENDPOINT: string = 'https://localhost:8081/api/hub/chat';
-    private hubConnection: signalR.HubConnection;
+    public connection: signalR.HubConnection;
 
     constructor() {
         this.data = [];
-        this.hubConnection = new signalR.HubConnectionBuilder()
+        this.connection = new signalR.HubConnectionBuilder()
             .withUrl(this.ENDPOINT)
             .build();
     }
 
-    public startConnection = async () => {
-        await this.hubConnection.start();
-        let CONNECTED = this.hubConnection.state === 'Connected';
-        if (!CONNECTED) {
-            console.log('Error occurred with the chat connection');
-            return;
-        }
-        console.log('Connection started');
-        return;
+    public async startConnection() {
+        if (this.isConnected()) return;
+        await this.connection.start();
     };
 
-    public addChatListener = async (userId: string) => {
-        console.log('Attaching chat listener');
-        const getYou = (messageUser: string) =>
-            userId === messageUser ? 'You' : messageUser;
-        this.hubConnection.on('ReceiveMessage', (user: string, message: string) => {
-            this.data.push({ user: getYou(user), content: message });
-        });
+    public async stopConnection() {
+        if (!this.isConnected()) return;
+        await this.connection.stop();
+        this.data = [];
+    };
+
+    public getConnection() {
+        return this.connection;
+    }
+
+    public isConnected() {
+        return this.getConnection().state == signalR.HubConnectionState.Connected;
+    }
+
+    public leaveGroup = async (event: IChatEvent) => {
+        if (!this.isConnected()) return;
+        this.data.push(event);
+        this.getConnection().invoke(
+            'LeaveGroup',
+            event
+        );
     };
 
     public joinGroup = async (event: IChatEvent) => {
-        this.hubConnection.invoke(
+        if (!this.isConnected()) return;
+        this.data.push(event);
+        this.getConnection().invoke(
             'JoinGroup',
-            event.Username,
-            event.Roomname,
-            event.JWT,
-        );
-        this.hubConnection.invoke(
-            'SendMessageToGroup',
             event
         );
     };
 
     public sendMessage = async (event: IChatEvent) => {
-        this.hubConnection.invoke(
+        if (!this.isConnected()) return;
+        this.data.push(event);
+        this.getConnection().invoke(
             'SendMessageToGroup',
             event,
         );

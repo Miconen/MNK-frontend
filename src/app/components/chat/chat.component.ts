@@ -1,6 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SignalrService } from '../../services/signalr.service';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { IChatEvent } from 'src/app/types/message.interface';
 
@@ -9,36 +8,57 @@ import { IChatEvent } from 'src/app/types/message.interface';
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit, OnDestroy {
+
     constructor(
         public signalRService: SignalrService,
-        private http: HttpClient,
         private authService: AuthService
     ) { }
 
     async ngOnInit() {
-        const date = new Date();
+        await this.signalRService.startConnection();
 
-        let event: IChatEvent = {
+        const date = new Date();
+        let joinEvent: IChatEvent = {
             Date: date,
-            Content: "",
+            Content: "Join room",
             ContentType: 'Join',
             Username: this.authService.getUsername(),
             Roomname: 'test',
             JWT: this.authService.getToken(),
         };
 
-        await this.signalRService.startConnection();
-        await this.signalRService.addChatListener(event.Username);
-        this.startHttpRequest();
-        await this.signalRService.joinGroup(event);
+        this.signalRService.connection.on('ReceiveMessage', (username: string, message: string) => {
+            console.log("GOT HERE!");
+            let messageEvent: IChatEvent = {
+                Date: date,
+                Content: message,
+                ContentType: 'Message',
+                Username: username,
+                Roomname: 'test',
+                JWT: this.authService.getToken(),
+            };
+            this.signalRService.data.push(messageEvent);
+        });
+
+        await this.signalRService.joinGroup(joinEvent)
     }
 
-    private startHttpRequest = () => {
-        this.http.get(this.signalRService.ENDPOINT).subscribe((res) => {
-            console.log(res);
-        });
-    };
+    ngOnDestroy() {
+        if (this.signalRService.isConnected()) this.signalRService.getConnection().off("ReceiveMessage");
+        const date = new Date();
+        let leaveEvent: IChatEvent = {
+            Date: date,
+            Content: "Leave room",
+            ContentType: 'Leave',
+            Username: this.authService.getUsername(),
+            Roomname: 'test',
+            JWT: this.authService.getToken(),
+        };
+        this.signalRService.leaveGroup(leaveEvent);
+        this.signalRService.stopConnection();
+    }
+
 
     public getData = () => {
         let data = this.signalRService.data;
@@ -50,12 +70,9 @@ export class ChatComponent {
     }
 
     sendMessage(message: HTMLTextAreaElement, chatWindow: HTMLDivElement) {
-        if (message.value.trim() === '') {
-            return;
-        }
+        if (message.value.trim() === '') return;
 
         const date = new Date();
-
         let event: IChatEvent = {
             Date: date,
             Content: message.value,
@@ -75,6 +92,6 @@ export class ChatComponent {
 
     // if message user is not You then align text right
     checkUser(user: string) {
-        return user === 'You' ? '' : 'content-right';
+        return user === this.authService.getUsername() ? 'message--self' : 'message--else';
     }
 }

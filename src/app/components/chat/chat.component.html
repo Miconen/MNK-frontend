@@ -12,6 +12,7 @@
                     <p class="message w-fit break-all rounded-md bg-blue-300 p-2 dark:bg-blue-600">
                         <span class="font-bold">{{ message.Username }}</span>: {{ message.Content }}
                     </p>
+                    <p class="text-xs">{{ message.Date.toLocaleTimeString() }}</p>
                 </div>
             </div>
         </div>

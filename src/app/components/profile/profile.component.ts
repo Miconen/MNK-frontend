@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,13 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  public userName = 'default user';
-  ngOnInit() {
-    const name = localStorage.getItem('auth-user');
-    if (name) {
-      this.userName = name;
-    }
-  }
+  constructor(public authService: AuthService) {}
 
   deleteUser() {
     // TODO: delete user logic here

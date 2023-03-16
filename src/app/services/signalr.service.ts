@@ -38,7 +38,6 @@ export class SignalrService {
 
     public leaveGroup = async (event: IChatEvent) => {
         if (!this.isConnected()) return;
-        this.data.push(event);
         this.getConnection().invoke(
             'LeaveGroup',
             event
@@ -47,7 +46,6 @@ export class SignalrService {
 
     public joinGroup = async (event: IChatEvent) => {
         if (!this.isConnected()) return;
-        this.data.push(event);
         this.getConnection().invoke(
             'JoinGroup',
             event

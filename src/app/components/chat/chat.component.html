@@ -21,7 +21,9 @@
                         <span class="font-bold">{{ message.Username }}</span
                         >: {{ message.Content }}
                     </p>
-                    <p class="text-xs">{{ message.Date.toLocaleTimeString() }}</p>
+                    <span class="w-fit bg-none text-xs">
+                        {{ message.Date.toLocaleTimeString() }}
+                    </span>
                 </div>
             </div>
         </div>

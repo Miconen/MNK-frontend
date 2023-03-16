@@ -51,7 +51,7 @@ label {
 }
 
 .message--self {
-    @apply flex justify-end;
+    @apply flex flex-col items-end;
 }
 
 .message--else {

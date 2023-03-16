@@ -9,9 +9,11 @@
         alt="Harold image"
       />
       <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-        {{ userName }}
+        {{ this.authService.getUsername() }}
       </h5>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Role</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        {{ this.authService.getRole() }}
+      </span>
       <div class="mt-4 space-x-3 md:mt-6">
         <button
           (click)="deleteUser()"

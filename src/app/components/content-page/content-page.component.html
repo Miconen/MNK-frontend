@@ -1,0 +1,36 @@
+<section class="flex flex-row justify-between p-4 sm:gap-28">
+  <div
+    class="w-1/4 grow border-r border-black p-3 text-black dark:border-white dark:text-white"
+  >
+    <ul>
+      <li>Live chats</li>
+      <li>Topics</li>
+    </ul>
+  </div>
+  <div
+    infinite-scroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"
+    class="flex grow flex-col gap-4 overflow-y-auto p-3"
+  >
+    <div
+      *ngFor="let item of data"
+      class="block w-full rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+    >
+      <h1
+        class="mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white sm:text-2xl"
+      >
+        {{ item }}
+      </h1>
+      <p
+        class="text-xs font-normal text-gray-700 dark:text-gray-400 sm:text-lg"
+      >
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad pariatur
+        tempore cum, quam omnis cumque excepturi adipisci enim odit laudantium
+        sit! Ratione placeat ipsam ullam facilis minus? Ex, aperiam obcaecati?
+      </p>
+      <!-- dark:text-gray-400 -->
+    </div>
+  </div>
+</section>

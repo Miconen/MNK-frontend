@@ -1,0 +1,51 @@
+<div class="container mx-auto mt-5 flex justify-center p-2">
+  <div class="max-w-md grow rounded p-4">
+    <h2 class="mb-3 text-lg font-medium dark:text-white">
+      Sign in to your account
+    </h2>
+    <!-- error messages -->
+    <div *ngIf="errorMessages" class="mb-3 text-sm text-red-500">
+      <div *ngFor="let errorMessage of errorMessages">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-6 flex flex-col">
+        <label class="mb-1 dark:text-white" for="username">Username</label>
+        <input
+          class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
+          type="text"
+          id="username"
+          placeholder="username"
+          formControlName="Name"
+          required
+        />
+      </div>
+      <div class="mb-6 flex flex-col">
+        <label class="mb-1 dark:text-white" for="password">Password</label>
+        <input
+          class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
+          type="password"
+          id="password"
+          placeholder="*******"
+          formControlName="Password"
+          required
+        />
+      </div>
+      <div class="mb-5">
+        <button
+          type="submit"
+          class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
+        >
+          Sign in
+        </button>
+      </div>
+      <div class="mb-5">
+        <p class="text-neutral-500">
+          Don't have an account yet?
+          <a routerLink="/signup" class="text-blue-600">Sign up</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<!-- enctype="multipart/form-data" -->
+<section class="container mx-auto mt-5 flex justify-center p-2">
+  <form
+    enctype="multipart/form-data"
+    [formGroup]="signupForm"
+    (ngSubmit)="onCreate()"
+    class="flex max-w-md grow flex-col p-4 py-5"
+  >
+    <div>
+      <h2 class="mb-3 text-lg font-medium dark:text-white">
+        Create new account
+      </h2>
+      <!-- error messages -->
+      <div *ngIf="errorMessages" class="mb-3 text-sm text-red-500">
+        <div *ngFor="let errorMessage of errorMessages">
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="mb-6 flex grow flex-col">
+      <label class="mb-1 dark:text-white">Username</label>
+      <input
+        type="text"
+        id="Name"
+        formControlName="Name"
+        class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
+        placeholder="username"
+      />
+    </div>
+    <div class="mb-6 flex flex-col">
+      <label class="mb-1 dark:text-white">Password</label>
+      <input
+        type="password"
+        id="Password"
+        formControlName="Password"
+        class="bg-neutral-100 p-2 shadow dark:bg-gray-700 dark:text-gray-300 dark:focus:outline-gray-700"
+        placeholder="*******"
+      />
+    </div>
+    <div class="mb-5">
+      <button
+        type="submit"
+        class="w-full rounded bg-blue-500 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300"
+        [disabled]="!signupForm.valid"
+      >
+        Create an account
+      </button>
+    </div>
+    <div class="mb-5">
+      <p class="text-neutral-500">
+        Have an account already?
+        <a routerLink="/login" class="text-blue-600">Sign in</a>
+      </p>
+    </div>
+  </form>
+</section>
